@@ -19,8 +19,8 @@ module.exports.createNewJoke = (req, res) => {
 };
 
 module.exports.updateExistingJoke = (req, res) => {
-  Joke.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
-    .then(updatedUser => res.json({ joke: updatedJoke }))
+  Joke.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true})
+    .then(updatedJoke => res.json({ joke: updatedJoke }))
     .catch(err => res.json({ message: "Something went wrong", error: err }));
 };
 
